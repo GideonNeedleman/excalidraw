@@ -87,7 +87,7 @@ const Footer = ({
       </div>
       <ExitZenModeAction
         actionManager={actionManager}
-        showExitZenModeBtn={showExitZenModeBtn}
+        showExitZenModeBtn={false}
       />
     </footer>
   );

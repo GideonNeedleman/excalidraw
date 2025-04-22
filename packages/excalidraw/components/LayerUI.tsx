@@ -249,7 +249,13 @@ const LayerUI = ({
 
     return (
       <FixedSideContainer side="top">
-        <div className="App-menu App-menu_top">
+        <div
+          className={clsx("App-menu App-menu_top zen-mode-transition", {
+            "layer-ui__wrapper__app-menu--transition-top":
+              appState.zenModeEnabled,
+          })}
+        >
+          {/* App-menu App-menu_top */}
           <Stack.Col gap={6} className={clsx("App-menu_top__left")}>
             {renderCanvasActions()}
             {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}

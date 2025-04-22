@@ -36,7 +36,14 @@ const Footer = ({
   return (
     <footer
       role="contentinfo"
-      className="layer-ui__wrapper__footer App-menu App-menu_bottom"
+      className={clsx(
+        "layer-ui__wrapper__footer App-menu App-menu_bottom zen-mode-transition",
+        {
+          "layer-ui__wrapper__footer-left--transition-bottom":
+            appState.zenModeEnabled,
+        },
+      )}
+      // "layer-ui__wrapper__footer App-menu App-menu_bottom"
     >
       <div
         className={clsx("layer-ui__wrapper__footer-left zen-mode-transition", {

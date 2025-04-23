@@ -129,7 +129,7 @@ export class AnimatedTrail implements Trail {
   }
 
   private update() {
-    this.pastTrails = [];
+    // this.pastTrails = [];
     this.start();
     if (this.trailAnimation) {
       this.trailAnimation.setAttribute("begin", "indefinite");

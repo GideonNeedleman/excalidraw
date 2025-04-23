@@ -33,8 +33,8 @@ export class LaserTrails implements Trail {
       simplify: 0,
       streamline: 0.4,
       sizeMapping: (c) => {
-        const DECAY_TIME = 1000;
-        const DECAY_LENGTH = 50;
+        const DECAY_TIME = 2000;
+        const DECAY_LENGTH = 500;
         const t = Math.max(
           0,
           1 - (performance.now() - c.pressure) / DECAY_TIME,

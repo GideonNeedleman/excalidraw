@@ -33,7 +33,7 @@ export class LaserTrails implements Trail {
       simplify: 0,
       streamline: 0.4,
       sizeMapping: (c) => {
-        const DECAY_TIME = 2000;
+        const DECAY_TIME = 5000;
         const DECAY_LENGTH = 500;
         const t = Math.max(
           0,

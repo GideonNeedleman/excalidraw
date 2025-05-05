@@ -31,14 +31,14 @@ export const SHAPES = [
   {
     icon: DiamondIcon,
     value: "diamond",
-    key: KEYS.D,
+    key: null,
     numericKey: KEYS["3"],
     fillable: true,
   },
   {
     icon: EllipseIcon,
     value: "ellipse",
-    key: KEYS.O,
+    key: [KEYS.O, KEYS.W],
     numericKey: KEYS["4"],
     fillable: true,
   },
@@ -52,7 +52,7 @@ export const SHAPES = [
   {
     icon: LineIcon,
     value: "line",
-    key: KEYS.L,
+    key: KEYS.D,
     numericKey: KEYS["6"],
     fillable: true,
   },

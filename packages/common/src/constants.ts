@@ -377,9 +377,9 @@ export const ROUGHNESS = {
 } as const;
 
 export const STROKE_WIDTH = {
-  thin: 1,
-  bold: 2,
-  extraBold: 4,
+  thin: 2,
+  bold: 4,
+  extraBold: 8,
 } as const;
 
 export const DEFAULT_ELEMENT_PROPS: {
@@ -395,9 +395,9 @@ export const DEFAULT_ELEMENT_PROPS: {
   strokeColor: COLOR_PALETTE.black,
   backgroundColor: COLOR_PALETTE.transparent,
   fillStyle: "solid",
-  strokeWidth: 2,
+  strokeWidth: 4,
   strokeStyle: "solid",
-  roughness: ROUGHNESS.artist,
+  roughness: ROUGHNESS.architect,
   opacity: 100,
   locked: false,
 };

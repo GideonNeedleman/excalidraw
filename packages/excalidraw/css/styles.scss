@@ -113,9 +113,16 @@ body.excalidraw-cursor-resize * {
 
   &__embeddable-container {
     position: absolute;
-    z-index: 2;
+    z-index: 0;
     transform-origin: top left;
     pointer-events: none;
+
+    &.is-active {
+      pointer-events: auto; // Enable pointer events when active
+      z-index: var(
+        --zIndex-interactiveCanvas
+      ); // Temporarily bring above canvas
+    }
   }
 
   &.theme--dark {

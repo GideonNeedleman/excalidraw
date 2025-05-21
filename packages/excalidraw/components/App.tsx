@@ -1255,6 +1255,7 @@ class App extends React.Component<AppProps, AppState> {
               key={el.id}
               className={clsx("excalidraw__embeddable-container", {
                 "is-hovered": isHovered,
+                "is-active": isActive,
               })}
               style={{
                 transform: isVisible

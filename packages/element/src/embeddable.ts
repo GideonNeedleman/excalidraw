@@ -71,6 +71,12 @@ const ALLOWED_DOMAINS = new Set([
   "reddit.com",
   "*.com",
   "*.org",
+  "*.app",
+  "*.io",
+  "*.net",
+  "*.ai",
+  "*.cloud",
+  "*.co",
 ]);
 
 const ALLOW_SAME_ORIGIN = new Set([

@@ -139,7 +139,7 @@ import { register } from "./register";
 import type { CaptureUpdateActionType } from "../store";
 import type { AppClassProperties, AppState, Primitive } from "../types";
 
-const FONT_SIZE_RELATIVE_INCREASE_STEP = 0.1;
+const FONT_SIZE_RELATIVE_INCREASE_STEP = 24;
 
 export const changeProperty = (
   elements: readonly ExcalidrawElement[],
@@ -676,19 +676,19 @@ export const actionChangeFontSize = register({
             testId: "fontSize-small",
           },
           {
-            value: 36,
+            value: 48,
             text: t("labels.medium"),
             icon: FontSizeMediumIcon,
             testId: "fontSize-medium",
           },
           {
-            value: 60,
+            value: 72,
             text: t("labels.large"),
             icon: FontSizeLargeIcon,
             testId: "fontSize-large",
           },
           {
-            value: 84,
+            value: 96,
             text: t("labels.veryLarge"),
             icon: FontSizeExtraLargeIcon,
             testId: "fontSize-veryLarge",
@@ -734,11 +734,9 @@ export const actionDecreaseFontSize = register({
   trackEvent: false,
   perform: (elements, appState, value, app) => {
     return changeFontSize(elements, appState, app, (element) =>
-      Math.round(
-        // get previous value before relative increase (doesn't work fully
-        // due to rounding and float precision issues)
-        (1 / (1 + FONT_SIZE_RELATIVE_INCREASE_STEP)) * element.fontSize,
-      ),
+      element.fontSize == 24
+        ? FONT_SIZE_RELATIVE_INCREASE_STEP * 4
+        : element.fontSize - FONT_SIZE_RELATIVE_INCREASE_STEP,
     );
   },
   keyTest: (event) => {
@@ -758,7 +756,9 @@ export const actionIncreaseFontSize = register({
   trackEvent: false,
   perform: (elements, appState, value, app) => {
     return changeFontSize(elements, appState, app, (element) =>
-      Math.round(element.fontSize * (1 + FONT_SIZE_RELATIVE_INCREASE_STEP)),
+      element.fontSize === FONT_SIZE_RELATIVE_INCREASE_STEP * 4
+        ? FONT_SIZE_RELATIVE_INCREASE_STEP
+        : element.fontSize + FONT_SIZE_RELATIVE_INCREASE_STEP,
     );
   },
   keyTest: (event) => {

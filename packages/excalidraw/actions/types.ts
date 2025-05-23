@@ -70,6 +70,7 @@ export type ActionName =
   | "changeArrowType"
   | "changeOpacity"
   | "changeFontSize"
+  | "cycleStrokeStyle"
   | "toggleCanvasMenu"
   | "toggleEditMenu"
   | "undo"

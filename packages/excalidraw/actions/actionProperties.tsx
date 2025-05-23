@@ -581,13 +581,22 @@ export const actionChangeStrokeStyle = register({
   label: "labels.strokeStyle",
   trackEvent: false,
   perform: (elements, appState, value) => {
+    let nextStyle = value;
+    if (nextStyle === undefined || nextStyle === null) {
+      nextStyle =
+        appState.currentItemStrokeStyle === "solid"
+          ? "dashed"
+          : appState.currentItemStrokeStyle === "dashed"
+          ? "dotted"
+          : "solid";
+    }
     return {
       elements: changeProperty(elements, appState, (el) =>
         newElementWith(el, {
-          strokeStyle: value,
+          strokeStyle: nextStyle,
         }),
       ),
-      appState: { ...appState, currentItemStrokeStyle: value },
+      appState: { ...appState, currentItemStrokeStyle: nextStyle },
       captureUpdate: CaptureUpdateAction.IMMEDIATELY,
     };
   },
@@ -625,7 +634,12 @@ export const actionChangeStrokeStyle = register({
       />
     </fieldset>
   ),
+  keyTest: (event) => {
+    return event.shiftKey && event.key === "D";
+  },
 });
+
+export const actionCycleStrokeStyle = actionChangeStrokeStyle;
 
 export const actionChangeOpacity = register({
   name: "changeOpacity",

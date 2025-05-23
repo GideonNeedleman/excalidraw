@@ -28,6 +28,7 @@ export const getObservedAppState = (appState: AppState): ObservedAppState => {
     editingLinearElementId: appState.editingLinearElement?.elementId || null,
     selectedLinearElementId: appState.selectedLinearElement?.elementId || null,
     croppingElementId: appState.croppingElementId,
+    currentItemStrokeStyle: appState.currentItemStrokeStyle,
   };
 
   Reflect.defineProperty(observedAppState, hiddenObservedAppStateProp, {

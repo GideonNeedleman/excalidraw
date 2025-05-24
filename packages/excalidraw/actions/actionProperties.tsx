@@ -475,13 +475,22 @@ export const actionChangeStrokeWidth = register({
   label: "labels.strokeWidth",
   trackEvent: false,
   perform: (elements, appState, value) => {
+    let nextStyle = value;
+    if (nextStyle === undefined || nextStyle === null) {
+      nextStyle =
+        appState.currentItemStrokeWidth === STROKE_WIDTH.thin
+          ? STROKE_WIDTH.bold
+          : appState.currentItemStrokeWidth === STROKE_WIDTH.bold
+          ? STROKE_WIDTH.extraBold
+          : STROKE_WIDTH.thin;
+    }
     return {
       elements: changeProperty(elements, appState, (el) =>
         newElementWith(el, {
-          strokeWidth: value,
+          strokeWidth: nextStyle,
         }),
       ),
-      appState: { ...appState, currentItemStrokeWidth: value },
+      appState: { ...appState, currentItemStrokeWidth: nextStyle },
       captureUpdate: CaptureUpdateAction.IMMEDIATELY,
     };
   },
@@ -522,6 +531,9 @@ export const actionChangeStrokeWidth = register({
       />
     </fieldset>
   ),
+  keyTest: (event) => {
+    return event.shiftKey && event.key === "W";
+  },
 });
 
 export const actionChangeSloppiness = register({

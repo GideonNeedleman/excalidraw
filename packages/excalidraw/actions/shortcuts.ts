@@ -10,6 +10,7 @@ export type ShortcutName =
   | SubtypeOf<
       ActionName,
       | "changeStrokeStyle"
+      | "changeStrokeWidth"
       | "toggleTheme"
       | "loadScene"
       | "clearCanvas"
@@ -59,6 +60,7 @@ export type ShortcutName =
 
 const shortcutMap: Record<ShortcutName, string[]> = {
   changeStrokeStyle: [getShortcutKey("Shift+D")],
+  changeStrokeWidth: [getShortcutKey("Shift+W")],
   toggleTheme: [getShortcutKey("Shift+Alt+D")],
   saveScene: [getShortcutKey("CtrlOrCmd+S")],
   loadScene: [getShortcutKey("CtrlOrCmd+O")],

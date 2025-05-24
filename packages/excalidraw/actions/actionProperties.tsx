@@ -639,8 +639,6 @@ export const actionChangeStrokeStyle = register({
   },
 });
 
-export const actionCycleStrokeStyle = actionChangeStrokeStyle;
-
 export const actionChangeOpacity = register({
   name: "changeOpacity",
   label: "labels.opacity",

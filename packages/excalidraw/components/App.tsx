@@ -401,6 +401,7 @@ import {
   getSelectedElements,
   hasBackground,
   isSomeElementSelected,
+  canHaveArrowheads,
 } from "../scene";
 import Scene from "../scene/Scene";
 import { getStateForZoom } from "../scene/zoom";

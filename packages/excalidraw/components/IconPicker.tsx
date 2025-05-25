@@ -196,6 +196,7 @@ export function IconPicker<T>({
   onChange,
   group = "",
   numberOfOptionsToAlwaysShow,
+  isOpen = false,
 }: {
   label: string;
   value: T;
@@ -208,9 +209,16 @@ export function IconPicker<T>({
   onChange: (value: T) => void;
   numberOfOptionsToAlwaysShow?: number;
   group?: string;
+  isOpen?: boolean;
 }) {
   const [isActive, setActive] = React.useState(false);
   const rPickerButton = React.useRef<any>(null);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setActive(true);
+    }
+  }, [isOpen]);
 
   return (
     <div>

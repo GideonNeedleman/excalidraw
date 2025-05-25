@@ -1553,8 +1553,42 @@ export const actionChangeArrowhead = register({
       captureUpdate: CaptureUpdateAction.IMMEDIATELY,
     };
   },
+
   PanelComponent: ({ elements, appState, updateData }) => {
     const isRTL = getLanguage().rtl;
+    const [isEndPickerOpen, setEndPickerOpen] = useState(false);
+    const [isStartPickerOpen, setStartPickerOpen] = useState(false);
+
+    useEffect(() => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (
+          event.shiftKey &&
+          event.key === "A" &&
+          !event.altKey &&
+          !event.ctrlKey &&
+          !event.metaKey
+        ) {
+          setStartPickerOpen(false); // won't actually close startPicker because the open startPicker takes precedence for key presses
+          setEndPickerOpen(true);
+          event.preventDefault();
+        } else if (
+          event.shiftKey &&
+          event.key === "A" &&
+          event.altKey &&
+          !event.ctrlKey &&
+          !event.metaKey
+        ) {
+          setEndPickerOpen(false);
+          setStartPickerOpen(true);
+          event.preventDefault();
+        }
+      };
+
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, []);
 
     return (
       <fieldset>
@@ -1563,6 +1597,7 @@ export const actionChangeArrowhead = register({
           <IconPicker
             label="arrowhead_start"
             options={getArrowheadOptions(!isRTL)}
+            isOpen={isStartPickerOpen}
             value={getFormValue<Arrowhead | null>(
               elements,
               appState,
@@ -1573,13 +1608,17 @@ export const actionChangeArrowhead = register({
               true,
               appState.currentItemStartArrowhead,
             )}
-            onChange={(value) => updateData({ position: "start", type: value })}
+            onChange={(value) => {
+              setStartPickerOpen(false);
+              updateData({ position: "start", type: value });
+            }}
             numberOfOptionsToAlwaysShow={4}
           />
           <IconPicker
             label="arrowhead_end"
             group="arrowheads"
             options={getArrowheadOptions(!!isRTL)}
+            isOpen={isEndPickerOpen}
             value={getFormValue<Arrowhead | null>(
               elements,
               appState,
@@ -1590,7 +1629,10 @@ export const actionChangeArrowhead = register({
               true,
               appState.currentItemEndArrowhead,
             )}
-            onChange={(value) => updateData({ position: "end", type: value })}
+            onChange={(value) => {
+              setEndPickerOpen(false);
+              updateData({ position: "end", type: value });
+            }}
             numberOfOptionsToAlwaysShow={4}
           />
         </div>

@@ -4,11 +4,12 @@ import type { SubtypeOf } from "@excalidraw/common/utility-types";
 
 import { t } from "../i18n";
 
-import type { ActionName } from "./types";
+import type { ActionName, CustomActionName } from "./types";
 
 export type ShortcutName =
   | SubtypeOf<
       ActionName,
+      | CustomActionName
       | "changeStrokeStyle"
       | "changeStrokeWidth"
       | "toggleTheme"
@@ -57,6 +58,15 @@ export type ShortcutName =
   | "imageExport"
   | "commandPalette"
   | "searchMenu";
+
+export const registerCustomShortcuts = (
+  shortcuts: Record<CustomActionName, string[]>,
+) => {
+  for (const key in shortcuts) {
+    const shortcut = key as CustomActionName;
+    shortcutMap[shortcut] = shortcuts[shortcut];
+  }
+};
 
 const shortcutMap: Record<ShortcutName, string[]> = {
   changeStrokeStyle: [getShortcutKey("Shift+D")],

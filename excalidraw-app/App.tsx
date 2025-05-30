@@ -101,7 +101,7 @@ import {
   exportToExcalidrawPlus,
 } from "./components/ExportToExcalidrawPlus";
 import { TopErrorBoundary } from "./components/TopErrorBoundary";
-
+import { useMathSubtype } from "../packages/element/src/subtypes/mathjax";
 import {
   exportToBackend,
   getCollaborationLinkData,
@@ -365,6 +365,8 @@ const ExcalidrawWrapper = () => {
 
   const [excalidrawAPI, excalidrawRefCallback] =
     useCallbackRefState<ExcalidrawImperativeAPI>();
+
+  useMathSubtype(excalidrawAPI);
 
   const [, setShareDialogState] = useAtom(shareDialogStateAtom);
   const [collabAPI] = useAtom(collabAPIAtom);

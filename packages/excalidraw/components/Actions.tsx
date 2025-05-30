@@ -53,6 +53,7 @@ import "./Actions.scss";
 import { useDevice } from "./App";
 import Stack from "./Stack";
 import { ToolButton } from "./ToolButton";
+import { SubtypeShapeActions } from "./Subtypes";
 import { Tooltip } from "./Tooltip";
 import DropdownMenu from "./dropdownMenu/DropdownMenu";
 import {
@@ -162,6 +163,7 @@ export const SelectedShapeActions = ({
       {canChangeBackgroundColor(appState, targetElements) && (
         <div>{renderAction("changeBackgroundColor")}</div>
       )}
+      <SubtypeShapeActions elements={targetElements} />
       {showFillIcons && renderAction("changeFillStyle")}
 
       {(hasStrokeWidth(appState.activeTool.type) ||

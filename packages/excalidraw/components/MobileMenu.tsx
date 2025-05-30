@@ -6,6 +6,7 @@ import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
 
 import { isHandToolActive } from "../appState";
 import { useTunnels } from "../context/tunnels";
+import { SubtypeToggles } from "./Subtypes";
 import { t } from "../i18n";
 import { calculateScrollCenter } from "../scene";
 import { SCROLLBAR_WIDTH, SCROLLBAR_MARGIN } from "../scene/scrollbars";
@@ -95,6 +96,7 @@ export const MobileMenu = ({
                     />
                   </Stack.Row>
                 </Island>
+                <SubtypeToggles />
                 {renderTopRightUI && renderTopRightUI(true, appState)}
                 <div className="mobile-misc-tools-container">
                   {!appState.viewModeEnabled &&

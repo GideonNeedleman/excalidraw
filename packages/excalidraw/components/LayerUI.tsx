@@ -57,6 +57,7 @@ import { HintViewer } from "./HintViewer";
 import { ImageExportDialog } from "./ImageExportDialog";
 import { Island } from "./Island";
 import { JSONExportDialog } from "./JSONExportDialog";
+import { SubtypeToggles } from "./Subtypes";
 import { LaserPointerButton } from "./LaserPointerButton";
 
 import "./LayerUI.scss";
@@ -319,6 +320,7 @@ const LayerUI = ({
                             />
                           </Stack.Row>
                         </Island>
+                        <SubtypeToggles />
                         {isCollaborating && (
                           <Island
                             style={{

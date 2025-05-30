@@ -27,7 +27,7 @@ import { tryParseSpreadsheet, VALID_SPREADSHEET } from "./charts";
 
 import type { Spreadsheet } from "./charts";
 
-import type { BinaryFiles } from "./types";
+import type { AppState, BinaryFiles } from "./types";
 
 type ElementsClipboard = {
   type: typeof EXPORT_DATA_TYPES.excalidrawClipboard;
@@ -368,6 +368,7 @@ const parseClipboardEventTextData = async (
 export const parseClipboard = async (
   event: ClipboardEvent,
   isPlainPaste = false,
+  appState?: AppState,
 ): Promise<ClipboardData> => {
   const parsedEventData = await parseClipboardEventTextData(
     event,
@@ -387,6 +388,10 @@ export const parseClipboard = async (
       !isPlainPaste && parsePotentialSpreadsheet(parsedEventData.value);
 
     if (spreadsheetResult) {
+      if ("spreadsheet" in spreadsheetResult) {
+        spreadsheetResult.spreadsheet.activeSubtypes = appState?.activeSubtypes;
+        spreadsheetResult.spreadsheet.customData = appState?.customData;
+      }
       return spreadsheetResult;
     }
   } catch (error: any) {
